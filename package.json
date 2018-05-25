@@ -12,6 +12,10 @@
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
-    "express-handlebars": "*"
+    "express-handlebars": "*",
+    "body-parser":"*",
+    "mongoose":"*",
+    "fs":"*",
+    "formidable":"*"
   }
 }
