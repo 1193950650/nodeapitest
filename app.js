@@ -1,7 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var bodyparser = require('body-parser')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var exphbs = require('express-handlebars');
@@ -10,16 +9,15 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 app.engine('html', exphbs({
-    extname: '.html',
-    layoutsDir: 'views'
+    extname: '.html'
 }));
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html');
+app.set('views',path.join(__dirname, 'views'));
+app.set('view engine', '.html');
 
 app.use(logger('dev'));
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -37,7 +35,7 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   res.status(err.status || 500);
-  res.render('error');
+  res.render('views/error.html');
 });
 
 module.exports = app;
